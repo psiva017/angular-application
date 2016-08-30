@@ -1,0 +1,151 @@
+<div class="container">
+	<form name="userForm" novalidate>
+		<div class="col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading"
+					style="background-color: #009999; text-align: center;">
+					<h1>Registration Form</h1>
+					<div style="text-align: right;">
+						<button type="button" class="btn btn-primary" ng-click="home()"
+							ng-disabled="userForm.$invalid ">Home</button>
+					</div>
+				</div>
+
+				<div class="panel-body" style="background-color: #009999;">
+					<div>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-md-6 col-lg-6">
+
+									<label>FirstName:</label> <input type="text" name="firstname"
+										ng-model="firstname" placeholder="Enter firstname"
+										ng-minlength="4" ng-maxlength="10" class="form-control"
+										ng-required="true" ng-pattern="/^[a-zA-Z]{4,10}$/">
+									<div style="color: red"
+										ng-show="userForm.firstname.$touched || userForm.firstname.$submitted">
+										<span ng-show="userForm.firstname.$error.required">first
+											name is required</span> <span
+											ng-show="userForm.firstname.$error.minlength">minimum
+											length must be 4 characters</span> <span
+											ng-show="userForm.firstname.$error.maxlength">maximum
+											length must be 10 characters</span> <span
+											ng-show="userForm.firstname.$error.pattern">first name
+											must consist of only characters</span>
+									</div>
+								</div>
+
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<label>LastName:</label> <input type="text" name="lastname"
+										ng-model="lastname" placeholder="Enter lastname"
+										ng-minlength="4" ng-maxlength="10" class="form-control"
+										ng-required="true" ng-pattern="/^[a-zA-Z]{4,10}$/">
+									<div style="color: red"
+										ng-show="userForm.lastname.$touched || userForm.lastname.$submitted">
+										<span ng-show="userForm.lastname.$error.required">last
+											name is required</span> <span
+											ng-show="userForm.lastname.$error.minlength">minimum
+											length must be 4 characters</span> <span
+											ng-show="userForm.lastname.$error.maxlength">maximum
+											length must be 10 characters</span> <span
+											ng-show="userForm.lastname.$error.pattern">last name
+											can consist of alphabets </span>
+									</div>
+								</div>
+
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-md-6 col-lg-6">
+
+									<label>Email:</label> <input type="text" name="email"
+										ng-model="email" placeholder="Enter Email Id" ng-minlength="4"
+										ng-maxlength="15" class="form-control" ng-required="true"
+										ng-pattern="/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i">
+									<div style="color: red"
+										ng-show="userForm.email.$touched || userForm.email.$submitted">
+										<span ng-show="userForm.email.$error.required">email id
+											is required</span> <span ng-show="userForm.email.$error.minlength">minimum
+											length must be 4 characters</span> <span
+											ng-show="userForm.email.$error.maxlength">maximum
+											length must be 15 characters</span> <span
+											ng-show="userForm.email.$error.pattern">email must
+											consist of @ symbol ending by .com </span>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<label>Gender:</label>
+									<div>
+										<input type="radio" name="gender" value="Male"
+											ng-model="gender">Male <input type="radio"
+											name="gender" value="Female" ng-model="gender">
+										Female
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error':!userForm.password.$valid}">
+									<label>Password:</label> <input type="password" name="password"
+										ng-model="password1" placeholder="Enter password"
+										ng-minlength="8" ng-maxlength="12" class="form-control"
+										ng-required="true" id="password1"
+										ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/">
+									<div style="color: red"
+										ng-show="userForm.password.$touched || userForm.password.$submitted">
+										<span ng-show="userForm.password.$error.required">password
+											is required</span> <span
+											ng-show="userForm.password.$error.minlength">minimum
+											length must be 8 characters</span> <span
+											ng-show="userForm.password.$error.maxlength">maximum
+											length must be 12 characters</span> <span
+											ng-show="userForm.password.$error.pattern"> Must
+											contain one lower &amp; uppercase letter, and one non-alpha
+											character (a number or a symbol.)</span>
+									</div>
+								</div>
+								<div class="col-sm-6 col-md-6 col-lg-6" ng-class="{'has-error':!userForm.passwordConfirmation.$valid}">
+									<label>Confirm Password:</label> <input type="password"
+										name="confirmpassword" ng-model="password2"
+										placeholder="Confirm password" ng-minlength="8" id="password2"
+										ng-maxlength="12" class="form-control" ng-required="true" pw-check="password1">
+									<div style="color: red"
+										ng-show="userForm.confirmpassword.$touched || userForm.confirmpassword.$submitted">
+										<span ng-show="userForm.confirmpassword.$error.required">confirm
+											password</span> <span
+											ng-show="userForm.confirmpassword.$error.minlength">minimum
+											length must be 8 characters</span> <span
+											ng-show="userForm.confirmpassword.$error.maxlength">maximum
+											length must be 12 characters</span> <span
+											ng-show="userForm.confirmpassword.$error.noMatch"
+											class="error">Password mismatch</span>
+									</div>
+								</div>
+							</div>
+
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<span><b>No of signedup users:{{users.length}}</b></span>
+								</div>
+								<div class="col-sm-6 col-md-6 col-lg-6">
+									<button type="submit" class="btn btn-primary"
+										ng-click="submit()" class="form-control"
+										ng-disabled="userForm.$invalid ">submit</button>
+									&nbsp; &nbsp;
+									<button type="reset" class="btn btn-primary" ng-click="reset()"
+										class="form-control">Reset</button>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
